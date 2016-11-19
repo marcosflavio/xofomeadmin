@@ -6,4 +6,5 @@ package br.com.teste.xofome.xofomeadmin.constantes;
 
 public class Codes {
     public static final int REQUEST_ADD_PRODUTO = 1;
+    public static final int REQUEST_MAIN = 2;
 }

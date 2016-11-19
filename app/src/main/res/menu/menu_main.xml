@@ -5,8 +5,9 @@
     <item
         android:title="Settings"
         android:id="@+id/add_produto"
-        app:showAsAction="ifRoom"
-        android:orderInCategory="100"/>
+        app:showAsAction="always"
+        android:orderInCategory="100"
+        android:icon="@mipmap/ic_add_white_48dp"/>
 
         <!--android:icon="@mipmap/ic_more_vert_white_48dp" />-->
 
