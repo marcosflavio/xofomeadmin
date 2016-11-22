@@ -20,4 +20,18 @@
     <string name="pedido_status"> Status: </string>
     <string name="pedido_status_din"> Em preparo </string>
 
+    <string name="desc_confirm"> Confirmar </string>
+    <string name="desc_cancel"> Cancelar </string>
+
+    <string name="text_view_desc_title"> Itens do Pedido </string>
+
+    <string name="text_view_desc_valor_total"> Valor total: </string>
+    <string name="text_view_desc_valor_total_real"> 7.85 </string>
+    <string name="text_view_desc_valor_a_ser_pago"> Valor a ser pago: </string>
+    <string name="text_view_desc_valor_a_ser_pago_real"> 10.00 </string>
+    <string name="text_view_desc_status_do_pedido"> Status do Pedido: </string>
+    <string name="text_view_desc_status_real"> Em processamento </string>
+    <string name="text_view_desc_entrega"> Entrega: </string>
+    <string name="text_view_desc_endereco"> Rua vila velha </string>
+
 </resources>

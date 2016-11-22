@@ -2,7 +2,6 @@ package br.com.teste.xofome.xofomeadmin.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Created by marcosf on 19/11/2016.
  */
