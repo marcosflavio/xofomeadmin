@@ -11,6 +11,8 @@ import br.com.teste.xofome.xofomeadmin.constantes.Codes;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Listar somente os pedidos diferentes de "Entregue"
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
