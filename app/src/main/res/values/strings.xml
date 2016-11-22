@@ -15,9 +15,9 @@
 
     <string name="pedidos_realizados"> Pedidos Recebidos </string>
 
-    <string name="pedido"> Pedido </string>
+    <string name="pedido"> Pedido: </string>
     <string name="pedido_id"> 1987 </string>
-    <string name="pedido_status"> Status </string>
+    <string name="pedido_status"> Status: </string>
     <string name="pedido_status_din"> Em preparo </string>
 
 </resources>
