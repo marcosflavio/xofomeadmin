@@ -34,4 +34,6 @@
     <string name="text_view_desc_entrega"> Entrega: </string>
     <string name="text_view_desc_endereco"> Rua vila velha </string>
 
+    <string name="text_view_produto_nome"> Pastel </string>
+    <string name="text_view_produto_valor"> 3.70 </string>
 </resources>
