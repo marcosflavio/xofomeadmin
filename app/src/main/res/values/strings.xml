@@ -8,8 +8,11 @@
 
     <string name="text_view_descricao_produto">Descrição:</string>
     <string name="edit_view_descricao_produto">bla bla bla</string>
+
     <string name="text_view_tipo_produto"> Tipo</string>
     <string name="radio_button_comida"> Comida </string>
     <string name="radio_button_bebida"> Bebida </string>
+
+    <string name="pedidos_realizados"> Pedidos Recebidos </string>
 
 </resources>
