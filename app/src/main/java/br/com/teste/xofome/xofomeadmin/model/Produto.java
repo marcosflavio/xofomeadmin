@@ -5,7 +5,6 @@ package br.com.teste.xofome.xofomeadmin.model;
  */
 
 public class Produto {
-
     private int idProduto;
     private String nomeProduto;
     private Float preco;
@@ -20,7 +19,6 @@ public class Produto {
     }
 
     public Produto() {
-
     }
 
     public String getDescricao() {

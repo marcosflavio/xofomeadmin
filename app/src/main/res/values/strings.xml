@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">XoFomeAdmin</string>
+    <string name="app_name">Xo Fome Admin</string>
+    <string name="text_view_nome_produto">Nome:</string>
+    <string name="edit_view_nome_produto">Pastel</string>
+
+    <string name="text_view_preco_produto">Preço:</string>
+    <string name="edit_view_preco_produto">5.99</string>
+
+    <string name="text_view_descricao_produto">Descrição:</string>
+    <string name="edit_view_descricao_produto">bla bla bla</string>
+
+
 </resources>

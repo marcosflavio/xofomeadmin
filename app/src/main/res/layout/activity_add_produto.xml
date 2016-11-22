@@ -1,9 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_add_produto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="br.com.teste.xofome.xofomeadmin.activities.AddProdutoActivity">
+    tools:context="br.com.teste.xofome.xofomeadmin.activities.AddProdutoActivity"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="@string/text_view_nome_produto"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewNomeProduto"
+            android:layout_width="85dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="@string/edit_view_nome_produto"
+            android:ems="10"
+            android:id="@+id/editTextNomeProduto" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="@string/text_view_preco_produto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewPrecoProduto"
+            android:layout_weight="0.45"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="@string/edit_view_preco_produto"
+            android:ems="10"
+            android:id="@+id/editTextPrecoProduto"
+            android:layout_weight="1"
+            android:textColor="?attr/colorPrimary" />
+    </LinearLayout>
+
+    <TextView
+        android:text="@string/text_view_descricao_produto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewDescricaoProduto"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editTextDescricaoProduto"
+        android:layout_weight="0.14" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_camera_enhance_black_48dp"
+        android:id="@+id/imageButton"
+        android:background="@null"
+        android:elevation="20dp"
+        android:layout_gravity="center"/>
+
+
 </LinearLayout>
