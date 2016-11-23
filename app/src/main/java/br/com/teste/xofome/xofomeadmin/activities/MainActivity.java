@@ -18,6 +18,7 @@ import br.com.teste.xofome.xofomeadmin.R;
 import br.com.teste.xofome.xofomeadmin.adapters.PedidoAdapter;
 import br.com.teste.xofome.xofomeadmin.constantes.Codes;
 import br.com.teste.xofome.xofomeadmin.constantes.Keys;
+import br.com.teste.xofome.xofomeadmin.dao.PedidoDAO;
 import br.com.teste.xofome.xofomeadmin.model.ItemPedido;
 import br.com.teste.xofome.xofomeadmin.model.Pedido;
 import br.com.teste.xofome.xofomeadmin.model.Produto;
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         rv = (RecyclerView) findViewById(R.id.recyclerViewPedidos);
         rv.setHasFixedSize(true);
-        //pedidos = PedidoService.findAll(this.getApplicationContext());
         bancoStub();
+        pedidos = PedidoService.findAll(this.getApplicationContext());
         adapter = new PedidoAdapter(this.getApplicationContext(),pedidos, onClickPedido());
 
         rv.setAdapter(adapter);
@@ -48,58 +49,30 @@ public class MainActivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
     }
 
-
     public void bancoStub(){
-
-//        Produto produto = new Produto();
-//        produto.setIdProduto(1);
-//        produto.setNomeProduto("Feijão");
-//        produto.setPreco(5.99f);
-//        produto.setTipo(0);
-//
-//
-//        Produto produto2 = new Produto();
-//        produto.setIdProduto(2);
-//        produto.setNomeProduto("Pastel");
-//        produto.setPreco(5.99f);
-//        produto.setTipo(0);
-//
-//
-//        Produto produto3 = new Produto();
-//        produto.setIdProduto(3);
-//        produto.setNomeProduto("Refrigerante");
-//        produto.setPreco(5.99f);
-//        produto.setTipo(1);
-//
-//        ItemPedido itemPedido = new ItemPedido();
-//        itemPedido.setValor(50f);
-//        itemPedido.setQuantidade(5);
-//        itemPedido.setNomeProduto(produto.getNomeProduto());
-//        itemPedido.setIdPedido(1);
-//
-        pedidos = new ArrayList<Pedido>();
         Pedido pedido = new Pedido();
-        pedido.setIdPedido(1);
         pedido.setStatus("Em preparo");
-
+        pedido.setEndereco("rua vila velha");
         Pedido pedido1 = new Pedido();
-        pedido1.setIdPedido(2);
         pedido1.setStatus("Em entrega");
 
+        pedido1.setEndereco("rua vila velha");
         Pedido pedido2 = new Pedido();
-        pedido2.setIdPedido(3);
         pedido2.setStatus("Finalizado");
 
+        pedido2.setEndereco("rua vila velha");
         Pedido pedido3 = new Pedido();
-        pedido3.setIdPedido(4);
         pedido3.setStatus("Recebido");
 
-        pedidos.add(pedido);
-        pedidos.add(pedido2);
-        pedidos.add(pedido3);
-        pedidos.add(pedido1);
-    }
+        pedido3.setEndereco("rua vila velha");
 
+
+        PedidoDAO dao = new PedidoDAO(getApplicationContext());
+        dao.save(pedido);
+        dao.save(pedido2);
+        dao.save(pedido3);
+        dao.save(pedido1);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -37,7 +37,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_PEDIDO = "create table if not exists pedido" +
             "(idPedido integer primary key autoincrement, status text, valorTotalPedido double" +
-            "endereco text,valorASerPago double)";
+            " endereco text,valorASerPago double)";
 
     @Override
     public void onCreate(SQLiteDatabase db) {

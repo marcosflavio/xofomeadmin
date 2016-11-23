@@ -21,7 +21,7 @@ public class PedidoDAO {
 
     private Context context;
     private String table_name = "pedido";
-    private String[] colunas  = new String[]{"idPedido","status","valorTotalPedido","endereco","valorASerPago"};
+    private String[] colunas  = new String[]{"idPedido","valorASerPago","status","endereco","valorTotalPedido"};
     private static final String TAG = "sql";
 
     public PedidoDAO (Context context){
