@@ -56,7 +56,7 @@ public class ProdutoDAO {
         values.put("nome_produto",produto.getNomeProduto());
         values.put("preco",produto.getPreco());
         values.put("descricao",produto.getDescricao());
-        values.put("tipo",produto.getDescricao());
+         values.put("tipo",produto.getDescricao());
             //Atualiza o produto
             db.update(table_name,values,"id_produto = " + id, null);
         }finally {
