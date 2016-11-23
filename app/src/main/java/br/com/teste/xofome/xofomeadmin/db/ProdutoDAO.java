@@ -45,6 +45,25 @@ public class ProdutoDAO {
 
     }
 
+    public void update(Produto produto){
+
+        int id = produto.getIdProduto();
+        SQLiteDatabase db = new DBHelper(context).getWritableDatabase();
+
+        try {
+        ContentValues values = new ContentValues();
+        values.put("nomeProduto",produto.getNomeProduto());
+        values.put("preco",produto.getPreco());
+        values.put("descricao",produto.getDescricao());
+        values.put("tipo",produto.getDescricao());
+            //Atualiza o produto
+            db.update(table_name,values,"idProduto = " + id, null);
+        }finally {
+            Log.d(TAG, "Produto" + produto.getNomeProduto() + " atualizado no banco!");
+            db.close();
+        }
+    }
+
     public void delete(Produto produto) {
         SQLiteDatabase db = new DBHelper(context).getWritableDatabase();
 
