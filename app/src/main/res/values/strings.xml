@@ -35,5 +35,5 @@
     <string name="text_view_desc_endereco"> Rua vila velha </string>
 
     <string name="text_view_produto_nome"> Pastel </string>
-    <string name="text_view_produto_valor"> 3.70 </string>
+    <string name="quantidadeItemPedido"> 5 </string>
 </resources>
