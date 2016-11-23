@@ -156,6 +156,15 @@ public class PedidoDAO {
         return pedidos;
     }
 
+    private List<ItemPedido> itensPedidoDAO( int id ){
+        Pedido pedido = findById( id );
+        List<ItemPedido> itens = pedido.getItensPedido();
+        if(itens.size()!= 0){
+            return itens;
+        }
+        return null;
+    }
+
     private Pedido toPedido(Cursor c) {
         Pedido pedido = new Pedido();
 
@@ -174,22 +183,5 @@ public class PedidoDAO {
             return null;
         }
     }
-//
-//    private void setItensPedidoDAO( int id ){
-//
-//        Pedido pedido = findById(id);
-//    }
 
-    private List<ItemPedido> getItensPedidoDAO( int id ){
-
-        List<ItemPedido> itens = new ArrayList<ItemPedido>();
-        Pedido pedido = findById( id );
-        itens = pedido.getItensPedido();
-
-        if(itens.size()!= 0){
-
-            return itens;
-        }
-        return null;
-    }
 }

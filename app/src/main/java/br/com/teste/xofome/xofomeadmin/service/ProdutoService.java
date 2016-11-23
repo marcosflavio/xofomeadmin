@@ -14,11 +14,11 @@ public class ProdutoService {
 
     public static Produto getProdutoById(Context context, int id) {
         ProdutoDAO dao = new ProdutoDAO(context);
-            Produto produto = dao.find(id);
-            if(produto!=null){
-                return produto;
-            }
-            return null;
+        Produto produto = dao.find(id);
+        if(produto!=null){
+            return produto;
+        }
+        return null;
     }
 
     public static List<Produto> getProdutos(Context context, int tipo) throws IOException {
