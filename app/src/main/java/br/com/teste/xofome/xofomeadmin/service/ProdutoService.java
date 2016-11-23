@@ -5,7 +5,7 @@ import android.content.Context;
 import java.io.IOException;
 import java.util.List;
 
-import br.com.teste.xofome.xofomeadmin.db.ProdutoDB;
+import br.com.teste.xofome.xofomeadmin.db.DBHelper;
 import br.com.teste.xofome.xofomeadmin.model.Produto;
 
 /**
@@ -15,7 +15,7 @@ import br.com.teste.xofome.xofomeadmin.model.Produto;
 public class ProdutoService {
 
     public static Produto getProdutoById(Context context, int id) {
-        ProdutoDB dao = new ProdutoDB(context);
+        DBHelper dao = new DBHelper(context);
 
         try {
             Produto produto = dao.find(id);
@@ -27,7 +27,7 @@ public class ProdutoService {
     }
 
     public static List<Produto> getProdutos(Context context, int tipo) throws IOException {
-        ProdutoDB dao = new ProdutoDB(context);
+        DBHelper dao = new DBHelper(context);
         try {
             List<Produto> produtos = dao.findAllTipo(tipo);
             return produtos;
@@ -37,7 +37,7 @@ public class ProdutoService {
     }
 
     public static Produto getProduto(Context context, int id) throws IOException {
-        ProdutoDB dao = new ProdutoDB(context);
+        DBHelper dao = new DBHelper(context);
         try {
             Produto produto = dao.findById(id);
             return produto;
@@ -47,7 +47,7 @@ public class ProdutoService {
     }
 
     public static void save(Context context, Produto produto) {
-        ProdutoDB dao = new ProdutoDB(context);
+        DBHelper dao = new DBHelper(context);
 
         try {
             dao.save(produto);
@@ -57,7 +57,7 @@ public class ProdutoService {
     }
 
     public static void delete(Context context, Produto produto) {
-        ProdutoDB dao = new ProdutoDB(context);
+        DBHelper dao = new DBHelper(context);
         try {
             dao.delete(produto);
         } finally {
