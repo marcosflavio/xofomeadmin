@@ -1,11 +1,9 @@
 package br.com.teste.xofome.xofomeadmin.service;
 
 import android.content.Context;
-
 import java.io.IOException;
 import java.util.List;
-
-import br.com.teste.xofome.xofomeadmin.db.DBHelper;
+import br.com.teste.xofome.xofomeadmin.dao.ProdutoDAO;
 import br.com.teste.xofome.xofomeadmin.model.Produto;
 
 /**
@@ -15,72 +13,48 @@ import br.com.teste.xofome.xofomeadmin.model.Produto;
 public class ProdutoService {
 
     public static Produto getProdutoById(Context context, int id) {
-        DBHelper dao = new DBHelper(context);
-
-        try {
+        ProdutoDAO dao = new ProdutoDAO(context);
             Produto produto = dao.find(id);
-
-            return produto;
-        } finally {
-            dao.close();
-        }
+            if(produto!=null){
+                return produto;
+            }
+            return null;
     }
 
     public static List<Produto> getProdutos(Context context, int tipo) throws IOException {
-        DBHelper dao = new DBHelper(context);
-        try {
+        ProdutoDAO dao = new ProdutoDAO(context);
             List<Produto> produtos = dao.findAllTipo(tipo);
             return produtos;
-        } finally {
-            dao.close();
-        }
     }
 
     public static Produto getProduto(Context context, int id) throws IOException {
-        DBHelper dao = new DBHelper(context);
-        try {
+        ProdutoDAO dao = new ProdutoDAO(context);
             Produto produto = dao.findById(id);
             return produto;
-        } finally {
-            dao.close();
-        }
     }
 
     public static void save(Context context, Produto produto) {
-        DBHelper dao = new DBHelper(context);
-
-        try {
+        ProdutoDAO dao = new ProdutoDAO(context);
             dao.save(produto);
-        } finally {
-            dao.close();
-        }
     }
 
     public static void delete(Context context, Produto produto) {
-        DBHelper dao = new DBHelper(context);
-        try {
+        ProdutoDAO dao = new ProdutoDAO(context);
             dao.delete(produto);
-        } finally {
-            dao.close();
-        }
     }
 
     public static Produto formarProduto(int tipo, float preco, String nome, String desc) {
         Produto produto = new Produto();
-
         produto.setTipo(tipo);
         produto.setPreco(preco);
         produto.setNomeProduto(nome);
         produto.setDescricao(desc);
-
         return produto;
     }
 
     public static void setListProdutos(List<Produto> produtos, Context context) {
-
         for (int i = 0; i < produtos.size(); i++) {
             save(context, produtos.get(i));
         }
-
     }
 }

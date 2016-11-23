@@ -1,4 +1,4 @@
-package br.com.teste.xofome.xofomeadmin.db;
+package br.com.teste.xofome.xofomeadmin.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.teste.xofome.xofomeadmin.db.DBHelper;
 import br.com.teste.xofome.xofomeadmin.model.Produto;
 
 /**
