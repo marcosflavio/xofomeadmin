@@ -52,12 +52,12 @@ public class ProdutoDAO {
 
         try {
         ContentValues values = new ContentValues();
-        values.put("nomeProduto",produto.getNomeProduto());
+        values.put("nome_produto",produto.getNomeProduto());
         values.put("preco",produto.getPreco());
         values.put("descricao",produto.getDescricao());
         values.put("tipo",produto.getDescricao());
             //Atualiza o produto
-            db.update(table_name,values,"idProduto = " + id, null);
+            db.update(table_name,values,"id_produto = " + id, null);
         }finally {
             Log.d(TAG, "Produto" + produto.getNomeProduto() + " atualizado no banco!");
             db.close();
@@ -79,7 +79,7 @@ public class ProdutoDAO {
         SQLiteDatabase db = new DBHelper(context).getWritableDatabase();
 
         try {
-            Cursor c = db.query(table_name, null, "id = '" + id + "'", null, null, null, null);
+            Cursor c = db.query(table_name, null, "id_produto = '" + id + "'", null, null, null, null);
             return toProduto(c);
         } finally {
             db.close();
