@@ -9,6 +9,14 @@
     tools:context="br.com.teste.xofome.xofomeadmin.activities.AddProdutoActivity"
     android:weightSum="1">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbarAdd" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -26,7 +34,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="@string/edit_view_nome_produto"
             android:ems="10"
             android:id="@+id/editTextNomeProduto" />
 
@@ -50,7 +57,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="@string/edit_view_preco_produto"
             android:ems="10"
             android:id="@+id/editTextPrecoProduto"
             android:layout_weight="1"
@@ -71,6 +77,7 @@
 
 
         <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
