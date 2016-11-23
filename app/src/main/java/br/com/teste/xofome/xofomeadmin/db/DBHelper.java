@@ -30,7 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "(id_produto integer primary key autoincrement" +
             " , nome_produto text,descricao text,preco float, tipo integer);";
 
-    private static final String CREATE_TABLE_ITEM_PEDIDO = "create table if not exists produto(idItemPedido" +
+    private static final String CREATE_TABLE_ITEM_PEDIDO = "create table if not exists item_pedido(idItemPedido" +
             " integer primary key autoincrement, idPedido integer, idProduto integer, nomeProduto text, " +
             "quantidade int, valor dpuble, foreign key(idPedido) references Pedido(idPedido)," +
             " foreign key(idProduto) references Produto(idProduto));";
