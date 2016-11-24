@@ -48,9 +48,9 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHold
     }
 
 
-    public PedidoAdapter(Context context, List<Pedido> produtos, PedidoAdapter.PedidoOnClickListener onClickListener) {
+    public PedidoAdapter(Context context, List<Pedido> pedidos, PedidoAdapter.PedidoOnClickListener onClickListener) {
         this.context = context;
-        this.pedidos = produtos;
+        this.pedidos = pedidos;
         this.onClickListener = onClickListener;
     }
 

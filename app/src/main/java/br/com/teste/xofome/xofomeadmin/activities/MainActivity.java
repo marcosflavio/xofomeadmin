@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClickPedido(View view, int idx) {
                     Pedido p = pedidos.get(idx);
                     Toast.makeText(getApplicationContext(), "Pedido "
-                            + p.getIdPedido(), Toast.LENGTH_SHORT).show();
+                            + p.getValorASerPago(), Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getApplicationContext(), DescricaoPedidoAcitivity.class);
                     i.putExtra(Keys.REQUEST_DETALHES,p.getIdPedido());
                     startActivity(i);
