@@ -108,8 +108,10 @@ public class PedidoDAO {
         SQLiteDatabase db = new DBHelper(context).getWritableDatabase();
 
         try {
-            Cursor c = db.query(table_name, null, null, null, null, null, null);
-            return toList(c);
+            //Cursor c = db.query("pedido", null, null, null, null, null, null);
+            Cursor cursor = db.rawQuery( "SELECT * FROM " + table_name,null);
+
+            return toList(cursor);
         } finally {
             db.close();
         }
@@ -120,7 +122,7 @@ public class PedidoDAO {
 
         SQLiteDatabase db = new DBHelper(context).getWritableDatabase();
         try {
-            Cursor c = db.query(table_name, null, "id_produto = '" + id + "'", null, null, null, null);
+            Cursor c = db.query(table_name, null, "idPedido = '" + id + "'", null, null, null, null);
             if (c.moveToFirst()) {
                 Pedido pedido = new Pedido();
                 pedido.setIdPedido(c.getInt(c.getColumnIndex("idPedido")));
@@ -141,14 +143,15 @@ public class PedidoDAO {
         List<Pedido> pedidos = new ArrayList<Pedido>();
 
         if (c.moveToFirst()) {
+
             do {
-               Pedido pedido = new Pedido();
+                Pedido pedido = new Pedido();
                 pedidos.add(pedido);
                 pedido.setIdPedido(c.getInt(c.getColumnIndex("idPedido")));
                 pedido.setValorTotalPedido(c.getDouble(c.getColumnIndex("valorTotalPedido")));
                 pedido.setStatus(c.getString(c.getColumnIndex("status")));
                 pedido.setEndereco(c.getString(c.getColumnIndex("endereco")));
-                pedido.setValorASerPago(c.getDouble(c.getColumnIndex("valorTotalASerPago")));
+                pedido.setValorASerPago(c.getDouble(c.getColumnIndex("valorASerPago")));
 
             } while (c.moveToNext());
         }

@@ -50,28 +50,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void bancoStub(){
+
         Pedido pedido = new Pedido();
         pedido.setStatus("Em preparo");
         pedido.setEndereco("rua vila velha");
+        pedido.setValorASerPago(50d);
         Pedido pedido1 = new Pedido();
         pedido1.setStatus("Em entrega");
-
+        pedido1.setValorASerPago(50d);
         pedido1.setEndereco("rua vila velha");
         Pedido pedido2 = new Pedido();
         pedido2.setStatus("Finalizado");
-
+        pedido2.setValorASerPago(50d);
         pedido2.setEndereco("rua vila velha");
         Pedido pedido3 = new Pedido();
         pedido3.setStatus("Recebido");
-
+        pedido3.setValorASerPago(50d);
         pedido3.setEndereco("rua vila velha");
-
 
         PedidoDAO dao = new PedidoDAO(getApplicationContext());
         dao.save(pedido);
         dao.save(pedido2);
         dao.save(pedido3);
         dao.save(pedido1);
+
     }
 
     @Override
