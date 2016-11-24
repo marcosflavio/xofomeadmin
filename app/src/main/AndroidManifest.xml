@@ -8,6 +8,22 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <service
+            android:name=".service.AdicionaProdutoService"
+            android:exported="false">
+        </service>
+
+        <service
+            android:name=".service.AtualizaPedidoService"
+            android:exported="false">
+        </service>
+
+        <service
+            android:name=".service.ListaPedidosService"
+            android:exported="false">
+        </service>
+
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
