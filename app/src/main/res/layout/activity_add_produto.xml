@@ -126,5 +126,11 @@
         android:elevation="20dp"
         android:layout_gravity="center"/>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageViewTeste"
+        android:layout_weight="0.53" />
+
 
 </LinearLayout>

@@ -1,6 +1,9 @@
 package br.com.teste.xofome.xofomeadmin.activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.Image;
+import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +11,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -23,6 +29,7 @@ public class AddProdutoActivity extends AppCompatActivity {
     private RadioButton comidas, bebidas;
     private int tipo;
     private LinearLayout linearLayout;
+    private ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +37,31 @@ public class AddProdutoActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAdd);
         setSupportActionBar(toolbar);
         linearLayout = (LinearLayout) findViewById(R.id.activity_add_produto);
+        imageView = (ImageView) findViewById(R.id.imageViewTeste);
+        ImageButton b = (ImageButton) findViewById(R.id.imageButton);
+
+        b.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(i, 0);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if( data != null){
+            Bundle bundle = data.getExtras();
+            if(bundle != null){
+                //Recupera o Bitmap retornado pela camera
+                Bitmap bitmap = (Bitmap) bundle.get("data");
+                //Atualiza a imagem na tela
+                imageView.setImageBitmap(bitmap);
+            }
+        }
     }
 
     public void listenerOnRadioButton(){
