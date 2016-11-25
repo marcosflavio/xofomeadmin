@@ -19,22 +19,20 @@ import br.com.teste.xofome.xofomeadmin.model.Produto;
 public class DBHelper extends SQLiteOpenHelper {
     private static final String TAG = "sql";
     public static final String NOME_BANCO = "xofome.admin.sqlite";
-    private static final int VERSAO_BANCO = 5;
+    private static final int VERSAO_BANCO = 6;
 
     public DBHelper(Context context) {
         super(context, NOME_BANCO, null, VERSAO_BANCO);
     }
 
-
     private static final String CREATE_TABLE_PRODUTO = "create table if not exists produto " +
             "(id_produto integer primary key autoincrement" +
-            " , nome_produto text,descricao text,preco float, tipo integer, imagem BLOB);";
+            " , nome_produto text,descricao text, preco float, tipo integer, imagem blob);";
 
     private static final String CREATE_TABLE_ITEM_PEDIDO = "create table if not exists item_pedido(idItemPedido" +
             " integer primary key autoincrement, idPedido integer, idProduto integer, nomeProduto text, " +
             "quantidade int, valor double, foreign key(idPedido) references Pedido(idPedido)," +
             " foreign key(idProduto) references Produto(idProduto));";
-
 
     private static final String CREATE_TABLE_PEDIDO = "create table if not exists pedido (idPedido integer primary key autoincrement, status text, endereco text, valorTotalPedido double, valorASerPago double);";
 
@@ -48,6 +46,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+
     }
 
 }

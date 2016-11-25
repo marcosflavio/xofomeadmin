@@ -45,7 +45,6 @@ public class AddProdutoActivity extends AppCompatActivity {
     private LinearLayout linearLayout;
     private ImageView imageView;
     private Bitmap bitmap;
-    private Bitmap backup;
 
     public static Bitmap rotateImage(Bitmap source, float angle) {
         Matrix matrix = new Matrix();

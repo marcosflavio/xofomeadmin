@@ -41,7 +41,7 @@ public class ProdutoDAO {
             //insiro o produto
             db.insert(table_name, "", values);
         } finally {
-            Log.d(TAG, "Produto" + produto.getNomeProduto() + " adicionado ao banco!");
+            Log.d(TAG, "Produto " + produto.getImagem() + " adicionado ao banco!");
             db.close();
         }
 
