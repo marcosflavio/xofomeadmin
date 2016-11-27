@@ -26,15 +26,15 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     private static final String CREATE_TABLE_PRODUTO = "create table if not exists produto " +
-            "(id_produto integer primary key autoincrement" +
+            "(id_produto integer primary key" +
             " , nome_produto text,descricao text, preco float, tipo integer, imagem blob);";
 
     private static final String CREATE_TABLE_ITEM_PEDIDO = "create table if not exists item_pedido(idItemPedido" +
-            " integer primary key autoincrement, idPedido integer, idProduto integer, nomeProduto text, " +
+            " integer primary key, idPedido integer, idProduto integer, nomeProduto text, " +
             "quantidade int, valor double, foreign key(idPedido) references Pedido(idPedido)," +
             " foreign key(idProduto) references Produto(idProduto));";
 
-    private static final String CREATE_TABLE_PEDIDO = "create table if not exists pedido (idPedido integer primary key autoincrement, status text, endereco text, valorTotalPedido double, valorASerPago double);";
+    private static final String CREATE_TABLE_PEDIDO = "create table if not exists pedido (idPedido integer primary key, status text, endereco text, valorTotalPedido double, valorASerPago double);";
 
     @Override
     public void onCreate(SQLiteDatabase db) {

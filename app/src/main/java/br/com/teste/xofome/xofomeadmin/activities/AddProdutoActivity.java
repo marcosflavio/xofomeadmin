@@ -34,6 +34,7 @@ import java.io.InputStream;
 import br.com.teste.xofome.xofomeadmin.R;
 import br.com.teste.xofome.xofomeadmin.constantes.Codes;
 import br.com.teste.xofome.xofomeadmin.model.Produto;
+import br.com.teste.xofome.xofomeadmin.service.AdicionaProdutoService;
 import br.com.teste.xofome.xofomeadmin.service.ProdutoService;
 import br.com.teste.xofome.xofomeadmin.util.HandleBitmap;
 import br.com.teste.xofome.xofomeadmin.util.ImageUtil;
@@ -139,7 +140,7 @@ public class AddProdutoActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
+        byte [] imagemFinal = null;
         if (id == R.id.confirmar_produto) {
 
             EditText nomeProduto = (EditText) findViewById(R.id.editTextNomeProduto);
@@ -151,11 +152,15 @@ public class AddProdutoActivity extends AppCompatActivity {
             String nome = nomeProduto.getText().toString();
             String desc = descProduto.getText().toString();
 
-            byte [] image = ImageUtil.getBytes(bitmap);
+            if( bitmap != null){
+                 imagemFinal = ImageUtil.getBytes(bitmap);
 
-            Produto produto = ProdutoService.formarProduto(tipo, preco, nome, desc, image);
+            }
 
-            ProdutoService.save(getApplicationContext(), produto);
+
+            Produto produto = ProdutoService.formarProduto(tipo, preco, nome, desc, imagemFinal);
+
+            //ProdutoService.save(getApplicationContext(), produto);
 
             Snackbar snackbar = Snackbar
                     .make(linearLayout, "Produto " + produto.getNomeProduto() +
@@ -163,6 +168,9 @@ public class AddProdutoActivity extends AppCompatActivity {
             snackbar.show();
 
             //starto um service para adicionar o produto no servidor com json
+            AdicionaProdutoService service = new AdicionaProdutoService(getApplicationContext());
+            service.execute(produto);
+
             return true;
 
         }else if (id == R.id.cancelar_produto){
