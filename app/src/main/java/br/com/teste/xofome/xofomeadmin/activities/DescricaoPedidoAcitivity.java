@@ -50,30 +50,30 @@ public class DescricaoPedidoAcitivity extends AppCompatActivity {
 
     public void bancoStub(){
 
-        ItemPedido p = new ItemPedido();
-        p.setIdPedido(2);
-        p.setNomeProduto("Pastel");
-        p.setQuantidade(5);
-
-        ItemPedido p1 = new ItemPedido();
-        p1.setIdPedido(1);
-        p1.setNomeProduto("Carne");
-        p1.setQuantidade(5);
-
-        ItemPedido p2 = new ItemPedido();
-        p2.setIdPedido(3);
-        p2.setNomeProduto("Feijão");
-        p2.setQuantidade(6);
-
-        ItemPedido p3 = new ItemPedido();
-        p3.setIdPedido(2);
-        p3.setNomeProduto("Arroz");
-        p3.setQuantidade(5);
-
-        ItemPedidoService.save(p,getApplicationContext());
-        ItemPedidoService.save(p1,getApplicationContext());
-        ItemPedidoService.save(p2,getApplicationContext());
-        ItemPedidoService.save(p3,getApplicationContext());
+//        ItemPedido p = new ItemPedido();
+//        p.setIdPedido(2);
+//        p.setNomeProduto("Pastel");
+//        p.setQuantidade(5);
+//
+//        ItemPedido p1 = new ItemPedido();
+//        p1.setIdPedido(1);
+//        p1.setNomeProduto("Carne");
+//        p1.setQuantidade(5);
+//
+//        ItemPedido p2 = new ItemPedido();
+//        p2.setIdPedido(3);
+//        p2.setNomeProduto("Feijão");
+//        p2.setQuantidade(6);
+//
+//        ItemPedido p3 = new ItemPedido();
+//        p3.setIdPedido(2);
+//        p3.setNomeProduto("Arroz");
+//        p3.setQuantidade(5);
+//
+//        ItemPedidoService.save(p,getApplicationContext());
+//        ItemPedidoService.save(p1,getApplicationContext());
+//        ItemPedidoService.save(p2,getApplicationContext());
+//        ItemPedidoService.save(p3,getApplicationContext());
     }
 
     private ItemPedidoAdapter.ItemPedidoOnClickListener onClickItemPedido() {
@@ -83,9 +83,9 @@ public class DescricaoPedidoAcitivity extends AppCompatActivity {
             @Override
             public void onClickItemPedido(View view, int idx) {
 
-                ItemPedido itemPedido = itemPedidos.get(idx);
-                Toast.makeText(getApplicationContext(), "ItemPedido "
-                        + itemPedido.getNomeProduto(), Toast.LENGTH_SHORT).show();
+              //  ItemPedido itemPedido = itemPedidos.get(idx);
+               // Toast.makeText(getApplicationContext(), "ItemPedido "
+                 //       + itemPedido.getNomeProduto(), Toast.LENGTH_SHORT).show();
             }
         };
     }

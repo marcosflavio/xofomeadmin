@@ -1,20 +1,21 @@
 package br.com.teste.xofome.xofomeadmin.model;
 
 /**
- * Created by marcosf on 19/11/2016.
+ * Created by Caio on 30/10/2016.
  */
+
 public class ItemPedido {
     private int idItemPedido;
-    private int idPedido;
-    private int idProduto;
     private String nomeProduto;
     private int quantidade;
     private double valor;
+    private Pedido pedido;
+    private Produto produto;
 
-    public ItemPedido(int idItemPedido, int idPedido, int idProduto, String nomeProduto, int quantidade, double valor) {
+    public ItemPedido(int idItemPedido, Pedido pedido, Produto produto, String nomeProduto, int quantidade, double valor) {
         this.idItemPedido = idItemPedido;
-        this.idPedido = idPedido;
-        this.idProduto = idProduto;
+        this.pedido = pedido;
+        this.produto = produto;
         this.nomeProduto = nomeProduto;
         this.quantidade = quantidade;
         this.valor = valor;
@@ -39,20 +40,20 @@ public class ItemPedido {
         this.idItemPedido = idItemPedido;
     }
 
-    public int getIdPedido() {
-        return idPedido;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setIdPedido(int idPedido) {
-        this.idPedido = idPedido;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
-    public int getIdProduto() {
-        return idProduto;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public String getNomeProduto() {
@@ -79,8 +80,8 @@ public class ItemPedido {
         ItemPedido that = (ItemPedido) o;
 
         if (getIdItemPedido() != that.getIdItemPedido()) return false;
-        if (getIdPedido() != that.getIdPedido()) return false;
-        if (getIdProduto() != that.getIdProduto()) return false;
+        if (getPedido() != that.getPedido()) return false;
+        if (getProduto() != that.getProduto()) return false;
         if (getQuantidade() != that.getQuantidade()) return false;
         return getNomeProduto().equals(that.getNomeProduto());
 
@@ -89,8 +90,8 @@ public class ItemPedido {
     @Override
     public int hashCode() {
         int result = getIdItemPedido();
-        result = 31 * result + getIdPedido();
-        result = 31 * result + getIdProduto();
+        result = 31 * result + getPedido().hashCode();
+        result = 31 * result + getProduto().hashCode();
         result = 31 * result + getNomeProduto().hashCode();
         result = 31 * result + getQuantidade();
         return result;

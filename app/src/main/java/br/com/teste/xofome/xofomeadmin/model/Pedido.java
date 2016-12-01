@@ -2,30 +2,34 @@ package br.com.teste.xofome.xofomeadmin.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.teste.xofome.xofomeadmin.model.Usuario;
+
 /**
- * Created by marcosf on 19/11/2016.
+ * Created by marcosf on 02/11/2016.
  */
+
 public class Pedido {
 
     private int idPedido;
-    private List<ItemPedido> itensPedido;
     private String status = "Inativo";
     private double valorTotalPedido;
     private String endereco;
-    private double valorASerPago;
+    private double valorASerPago = 0.0;
+    private Usuario usuario;
 
     public Pedido() {
-        this.itensPedido = new ArrayList<ItemPedido>();
+        // this.itensPedido = new ArrayList<ItemPedido>();
         idPedido++;
     }
 
-    public List<ItemPedido> getItensPedido() {
-        return itensPedido;
-    }
-
-    public void setItensPedido(List<ItemPedido> itensPedido) {
-        this.itensPedido = itensPedido;
-    }
+//    public List<ItemPedido> getItensPedido() {
+//        return itensPedido;
+//    }
+//
+//    public void setItensPedido(List<ItemPedido> itensPedido) {
+//        this.itensPedido = itensPedido;
+//    }
 
     public double getValorASerPago() {
         return valorASerPago;
@@ -63,11 +67,19 @@ public class Pedido {
 
         double valorTotal =0;
 
-        for(ItemPedido i: itensPedido){
-            valorTotal += i.getValor();
-        }
-        valorTotalPedido = valorTotal;
+//        for(ItemPedido i: itensPedido){
+//            valorTotal += i.getValor();
+//        }
+//        valorTotalPedido = valorTotal;
         return valorTotalPedido;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public void setValorTotalPedido(double valorTotalPedido) {
