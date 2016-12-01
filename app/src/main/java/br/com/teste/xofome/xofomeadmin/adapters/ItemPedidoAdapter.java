@@ -67,7 +67,8 @@ public class ItemPedidoAdapter extends RecyclerView.Adapter<ItemPedidoAdapter.My
         final ItemPedido itemPedido = itemPedidos.get(position);
 
         //Atualiza os valores nas views
-        holder.quantidadeItem.setText(String.valueOf(itemPedido.getQuantidade()));
+        //estou colocando o valor do produto
+        holder.quantidadeItem.setText(String.valueOf(itemPedido.getProduto().getPreco()));
         holder.produtoNome.setText(itemPedido.getNomeProduto());
 
         //Click

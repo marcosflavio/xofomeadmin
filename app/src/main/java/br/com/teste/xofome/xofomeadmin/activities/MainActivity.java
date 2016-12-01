@@ -25,7 +25,6 @@ import br.com.teste.xofome.xofomeadmin.constantes.Keys;
 import br.com.teste.xofome.xofomeadmin.model.Pedido;
 import br.com.teste.xofome.xofomeadmin.model.PedidoSingleton;
 import br.com.teste.xofome.xofomeadmin.service.ListaPedidosService;
-import br.com.teste.xofome.xofomeadmin.service.PedidoService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -113,9 +112,9 @@ public class MainActivity extends AppCompatActivity {
                     Pedido p = pedidos.get(idx);
                     Toast.makeText(getApplicationContext(), "Pedido "
                             + p.getValorASerPago(), Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getApplicationContext(), DescricaoPedidoAcitivity.class);
-                    i.putExtra(Keys.REQUEST_DETALHES,p.getIdPedido());
-                    startActivity(i);
+                Intent i = new Intent(getApplicationContext(), DescricaoPedidoAcitivity.class);
+                i.putExtra(Keys.REQUEST_DETALHES,p.getIdPedido());
+                startActivity(i);
             }
         };
     }

@@ -31,6 +31,20 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHold
         public TextView pedidoNumLay;
         public TextView statusPedidoLay;
         public TextView statusPedidoDin;
+
+        public TextView enderecoLay;
+        public TextView enderecoDin;
+
+        public TextView valorTotalLay;
+        public TextView valorTotalDin;
+
+        public TextView valorPagoLay;
+        public TextView valorPagoDin;
+
+        public TextView produtosLay;
+
+        public TextView produtosDin;
+
         private View view;
 
         public MyViewHolder(View v) {
@@ -40,6 +54,15 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHold
             pedidoNumLay = (TextView) view.findViewById(R.id.textViewPedidoNumLay);
             statusPedidoLay = (TextView) view.findViewById(R.id.textViewStatusPedidoLay);
             statusPedidoDin = (TextView) view.findViewById(R.id.textViewStatusPedidoDin);
+             enderecoLay = (TextView) view.findViewById(R.id.textViewLayEndereco);
+             enderecoDin = (TextView) view.findViewById(R.id.textViewEnderecoDin);
+             valorTotalLay = (TextView) view.findViewById(R.id.textViewValorTotalLay);
+             valorTotalDin = (TextView) view.findViewById(R.id.textViewValorTotalDin);
+             valorPagoLay = (TextView) view.findViewById(R.id.textViewValorPagoLay);
+             valorPagoDin = (TextView) view.findViewById(R.id.textViewValorPagoDin);
+             produtosLay = (TextView) view.findViewById(R.id.textViewProdutosLay);
+             produtosDin = (TextView) view.findViewById(R.id.textViewProdutosDin);
+
         }
 
         public View getView() {
@@ -71,6 +94,13 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHold
         //Atualiza os valores nas views
         holder.statusPedidoDin.setText(p.getStatus());
         holder.pedidoNumLay.setText(String.valueOf(p.getIdPedido()));
+        if(p.getEndereco() == null)
+            holder.enderecoDin.setText("Não informado");
+        else{
+            holder.enderecoDin.setText(p.getEndereco());
+        }
+        holder.valorTotalDin.setText(String.valueOf(p.getValorTotalPedido()));
+        holder.valorPagoDin.setText(String.valueOf(p.getValorASerPago()));
         //Click
         if (onClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {

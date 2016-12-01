@@ -36,4 +36,10 @@
 
     <string name="text_view_produto_nome"> Pastel </string>
     <string name="quantidadeItemPedido"> 5 </string>
+
+    <string name="endereco"> Endereço: </string>
+    <string name="valor_total"> Valor total: </string>
+    <string name="valor_pago"> Valor Pago: </string>
+    <string name="produtos"> Produtos: </string>
+
 </resources>

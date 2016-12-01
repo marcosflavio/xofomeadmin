@@ -1,26 +1,39 @@
 package br.com.teste.xofome.xofomeadmin.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.List;
 
 import br.com.teste.xofome.xofomeadmin.R;
 import br.com.teste.xofome.xofomeadmin.adapters.ItemPedidoAdapter;
+import br.com.teste.xofome.xofomeadmin.constantes.Codes;
+import br.com.teste.xofome.xofomeadmin.constantes.Keys;
 import br.com.teste.xofome.xofomeadmin.model.ItemPedido;
+import br.com.teste.xofome.xofomeadmin.model.Pedido;
 import br.com.teste.xofome.xofomeadmin.service.ItemPedidoService;
+import br.com.teste.xofome.xofomeadmin.task.RecuperarPedidoTask;
 
 public class DescricaoPedidoAcitivity extends AppCompatActivity {
 
     private RecyclerView rv;
     private ItemPedidoAdapter adapter = null;
     private static List<ItemPedido> itemPedidos;
+    private TextView valorRealPedido;
+    private TextView valorASerPagoRealPedido;
+    private TextView descEndereco;
+    private EditText statusPedido;
+    private Pedido pedido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +42,43 @@ public class DescricaoPedidoAcitivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarDesc);
         setSupportActionBar(toolbar);
 
+        //recebo o id de um pedido
+        //recupero ele e jogo pra um pedido em memoria
+        //Localizo os componentes e seto o valor de acordo com o do pedido recebido
+
+        Intent intent = getIntent();
+        int idPedido = (Integer) getIntent().getExtras().get(Keys.REQUEST_DETALHES);
+        pedido = new Pedido();
+        pedido.setIdPedido(idPedido);
+
+        //Chamo minha asynctask para recuperar o pedido.
+        //RecuperarPedidoTask recuperarPedidoTask = new RecuperarPedidoTask(getApplicationContext());
+        //recuperarPedidoTask.execute(pedido);
+
+         new Thread(new Runnable() {
+            @Override
+            public void run() {
+                pedido = RecuperarPedidoTask.retornePedido(pedido);
+
+            }
+        }).start();
+
+        Log.e("RecuperarPedidoTask", pedido.getStatus());
+
+        valorRealPedido = (TextView) findViewById(R.id.textViewValorRealPedido);
+        valorASerPagoRealPedido = (TextView) findViewById(R.id.textViewValorASerPagoRealPedido);
+        descEndereco = (TextView) findViewById(R.id.textViewDescEndereco);
+
+        //Assino os valores aos campos
+        valorRealPedido.setText(String.valueOf(pedido.getValorTotalPedido()));
+        valorASerPagoRealPedido.setText(String.valueOf(pedido.getValorASerPago()));
+        if(pedido.getEndereco() == null)
+            pedido.setEndereco("Não informado");
+        descEndereco.setText(pedido.getEndereco());
+
         rv = (RecyclerView) findViewById(R.id.recyclerViewDescPedido);
         rv.setHasFixedSize(false);
-        bancoStub();
-        // modificar esse service, retornar apenas os itens de um determinado pedido
-        //na verdade, está certo, depois deve ser feita uma filtragem dos itens que tem
-        //um determinado pedido id, igual o do id que foi clicado
-        //receber o id desse pedido via bundle
+
         itemPedidos = ItemPedidoService.findAll(this.getApplicationContext());
         adapter = new ItemPedidoAdapter(this.getApplicationContext(),itemPedidos, onClickItemPedido());
 
@@ -44,32 +87,9 @@ public class DescricaoPedidoAcitivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
     }
 
-    public void bancoStub(){
-
-//        ItemPedido p = new ItemPedido();
-//        p.setIdPedido(2);
-//        p.setNomeProduto("Pastel");
-//        p.setQuantidade(5);
-//
-//        ItemPedido p1 = new ItemPedido();
-//        p1.setIdPedido(1);
-//        p1.setNomeProduto("Carne");
-//        p1.setQuantidade(5);
-//
-//        ItemPedido p2 = new ItemPedido();
-//        p2.setIdPedido(3);
-//        p2.setNomeProduto("Feijão");
-//        p2.setQuantidade(6);
-//
-//        ItemPedido p3 = new ItemPedido();
-//        p3.setIdPedido(2);
-//        p3.setNomeProduto("Arroz");
-//        p3.setQuantidade(5);
-//
-//        ItemPedidoService.save(p,getApplicationContext());
-//        ItemPedidoService.save(p1,getApplicationContext());
-//        ItemPedidoService.save(p2,getApplicationContext());
-//        ItemPedidoService.save(p3,getApplicationContext());
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     private ItemPedidoAdapter.ItemPedidoOnClickListener onClickItemPedido() {
@@ -79,9 +99,6 @@ public class DescricaoPedidoAcitivity extends AppCompatActivity {
             @Override
             public void onClickItemPedido(View view, int idx) {
 
-              //  ItemPedido itemPedido = itemPedidos.get(idx);
-               // Toast.makeText(getApplicationContext(), "ItemPedido "
-                 //       + itemPedido.getNomeProduto(), Toast.LENGTH_SHORT).show();
             }
         };
     }
@@ -94,7 +111,8 @@ public class DescricaoPedidoAcitivity extends AppCompatActivity {
             //starta o service de setStatus
             return true;
         }else if (id == R.id.desc_cancel){
-            //volta pra main activity
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivityForResult(intent, Codes.REQUEST_BACK);
             return true;
         }
         return super.onOptionsItemSelected(item);
