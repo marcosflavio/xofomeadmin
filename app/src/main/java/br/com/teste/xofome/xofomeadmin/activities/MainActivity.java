@@ -1,11 +1,15 @@
 package br.com.teste.xofome.xofomeadmin.activities;
-
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,10 +22,9 @@ import br.com.teste.xofome.xofomeadmin.R;
 import br.com.teste.xofome.xofomeadmin.adapters.PedidoAdapter;
 import br.com.teste.xofome.xofomeadmin.constantes.Codes;
 import br.com.teste.xofome.xofomeadmin.constantes.Keys;
-import br.com.teste.xofome.xofomeadmin.dao.PedidoDAO;
-import br.com.teste.xofome.xofomeadmin.model.ItemPedido;
 import br.com.teste.xofome.xofomeadmin.model.Pedido;
-import br.com.teste.xofome.xofomeadmin.model.Produto;
+import br.com.teste.xofome.xofomeadmin.model.PedidoSingleton;
+import br.com.teste.xofome.xofomeadmin.service.ListaPedidosService;
 import br.com.teste.xofome.xofomeadmin.service.PedidoService;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rv;
     private PedidoAdapter adapter = null;
     private static List<Pedido> pedidos = new ArrayList<Pedido>();
-
+    protected SwipeRefreshLayout swipeRefreshLayout;
     //Listar somente os pedidos diferentes de "Entregue"
 
     @Override
@@ -38,10 +41,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarMain);
         setSupportActionBar(toolbar);
+        registerReceiver(receiverListarPedido,new IntentFilter("List_pedido_complete"));
+        registerReceiver(receiverListarPedidoFail, new IntentFilter("Update_status_fail"));
+        PedidoSingleton pedidoSingleton = PedidoSingleton.getInstancia();
+
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeListarPedidos);
+        swipeRefreshLayout.setOnRefreshListener(OnRefreshListener());
+        swipeRefreshLayout.setColorSchemeResources(R.color.refresh_progress_1,R.color.refresh_progress_2,
+                R.color.refresh_progress_3);
+
         rv = (RecyclerView) findViewById(R.id.recyclerViewPedidos);
         rv.setHasFixedSize(true);
-       // bancoStub();
-        //pedidos = PedidoService.findAll(this.getApplicationContext());
+
+        pedidos = pedidoSingleton.getList();
         adapter = new PedidoAdapter(this.getApplicationContext(),pedidos, onClickPedido());
 
         rv.setAdapter(adapter);
@@ -49,31 +61,15 @@ public class MainActivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
     }
 
-    public void bancoStub(){
-//
-//        Pedido pedido = new Pedido();
-//        pedido.setStatus("Em preparo");
-//        pedido.setEndereco("rua vila velha");
-//        pedido.setValorASerPago(50d);
-//        Pedido pedido1 = new Pedido();
-//        pedido1.setStatus("Em entrega");
-//        pedido1.setValorASerPago(50d);
-//        pedido1.setEndereco("rua vila velha");
-//        Pedido pedido2 = new Pedido();
-//        pedido2.setStatus("Finalizado");
-//        pedido2.setValorASerPago(50d);
-//        pedido2.setEndereco("rua vila velha");
-//        Pedido pedido3 = new Pedido();
-//        pedido3.setStatus("Recebido");
-//        pedido3.setValorASerPago(50d);
-//        pedido3.setEndereco("rua vila velha");
-//
-//        PedidoDAO dao = new PedidoDAO(getApplicationContext());
-//        dao.save(pedido);
-//        dao.save(pedido2);
-//        dao.save(pedido3);
-//        dao.save(pedido1);
 
+    private SwipeRefreshLayout.OnRefreshListener OnRefreshListener(){
+        return  new SwipeRefreshLayout.OnRefreshListener(){
+
+            @Override
+            public void onRefresh() {
+                startService(new Intent(getApplicationContext(),ListaPedidosService.class));
+            }
+        };
     }
 
     @Override
@@ -81,12 +77,26 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.add_produto) {
-
             Intent intent = new Intent(this, AddProdutoActivity.class);
             startActivityForResult(intent, Codes.REQUEST_ADD_PRODUTO);
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    @Override
+    protected void onResume() {
+        PedidoSingleton pedidoSingleton = PedidoSingleton.getInstancia();
+        swipeRefreshLayout.setRefreshing(false);
+        pedidos = pedidoSingleton.getList();
+        adapter = new PedidoAdapter(this.getApplicationContext(),pedidos, onClickPedido());
+        rv.setAdapter(adapter);
+        LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
+        rv.setLayoutManager(llm);
+        super.onResume();
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -110,5 +120,21 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
+
+    private BroadcastReceiver receiverListarPedido = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            onResume();
+        }
+    };
+
+    private BroadcastReceiver receiverListarPedidoFail = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d("service","Entrei no BroadcastReceiver listarFail");
+            Toast.makeText(getApplicationContext(), "Falha ao verificar pedidos, favor verificar conexão com a internet.",
+                    Toast.LENGTH_SHORT).show();
+        }
+    };
 
 }

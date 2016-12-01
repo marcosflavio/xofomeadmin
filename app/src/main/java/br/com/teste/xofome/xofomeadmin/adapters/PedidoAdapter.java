@@ -69,8 +69,8 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHold
 
         final Pedido p = pedidos.get(position);
         //Atualiza os valores nas views
-        holder.statusPedidoDin.setText(p.getEndereco());
-        holder.pedidoNumLay.setText(String.valueOf(p.getValorASerPago()));
+        holder.statusPedidoDin.setText(p.getStatus());
+        holder.pedidoNumLay.setText(String.valueOf(p.getIdPedido()));
         //Click
         if (onClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
