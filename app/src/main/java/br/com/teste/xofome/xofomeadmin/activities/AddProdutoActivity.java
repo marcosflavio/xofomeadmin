@@ -16,6 +16,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -141,8 +142,9 @@ public class AddProdutoActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         byte [] imagemFinal = null;
-        if (id == R.id.confirmar_produto) {
 
+        if (id == R.id.confirmar_produto) {
+            Produto produto = new Produto();
             EditText nomeProduto = (EditText) findViewById(R.id.editTextNomeProduto);
 
             EditText precoProduto = (EditText) findViewById(R.id.editTextPrecoProduto);
@@ -154,18 +156,18 @@ public class AddProdutoActivity extends AppCompatActivity {
 
             if( bitmap != null){
                  imagemFinal = ImageUtil.getBytes(bitmap);
+                produto.setImagem(imagemFinal);
+
 
             }
-
-
-            Produto produto = ProdutoService.formarProduto(tipo, preco, nome, desc, imagemFinal);
-
-            //ProdutoService.save(getApplicationContext(), produto);
-
-            Snackbar snackbar = Snackbar
-                    .make(linearLayout, "Produto " + produto.getNomeProduto() +
-                            " criado com sucesso!", Snackbar.LENGTH_LONG);
-            snackbar.show();
+            produto.setTipo(tipo);
+            produto.setPreco(preco);
+            produto.setDescricao(desc);
+            produto.setNomeProduto(nome);
+//            Snackbar snackbar = Snackbar
+//                    .make(linearLayout, "Produto " + produto.getNomeProduto() +
+//                            " criado com sucesso!", Snackbar.LENGTH_LONG);
+//            snackbar.show();
 
             //starto um service para adicionar o produto no servidor com json
             AdicionaProdutoService service = new AdicionaProdutoService(getApplicationContext());

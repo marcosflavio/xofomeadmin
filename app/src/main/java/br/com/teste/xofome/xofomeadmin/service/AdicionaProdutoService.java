@@ -7,6 +7,8 @@ import android.widget.Toast;
 import java.net.*;
 import java.io.*;
 import com.google.gson.Gson;
+
+import br.com.teste.xofome.xofomeadmin.constantes.HTTP;
 import br.com.teste.xofome.xofomeadmin.model.Produto;
 
 /**
@@ -44,13 +46,15 @@ public class AdicionaProdutoService extends AsyncTask<Produto, Integer, Integer>
             Produto p = produtos[0];
             Log.w("DoIn", "PRODUTOOOO>>>> " + p.getNomeProduto());
             //A URL que enviaremos o request
-            URL reqUrl = new URL("http://169.254.188.79:8060/produtos");
+            URL reqUrl = new URL(HTTP.SAVE_PRODUTO);
             request = (HttpURLConnection) (reqUrl.openConnection());
             Gson gson = new Gson();
+
             String post = gson.toJson(p);
             Log.w("DoIn", "JSON>>>> " + post);
             request.setDoOutput(true);
             request.setDoInput (true);
+
             //Adiciona o tamanho do conteudo do dados do post
             request.addRequestProperty("Content-Length", Integer.toString(post.length()));
             //Adiciona o tipo de conteudo do request
@@ -66,8 +70,8 @@ public class AdicionaProdutoService extends AsyncTask<Produto, Integer, Integer>
             writer.flush();
             writer.close();
             status = request.getResponseCode();
-            Log.w("status", "A   " + status);
 
+            Log.e("status", "A   " + status);
         } catch (MalformedURLException e) {
             Log.w("ErroNet", "Erro de MalFormed salvarPedido");
             e.printStackTrace();

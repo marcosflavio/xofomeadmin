@@ -1,6 +1,5 @@
 package br.com.teste.xofome.xofomeadmin.activities;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,14 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.List;
 
 import br.com.teste.xofome.xofomeadmin.R;
 import br.com.teste.xofome.xofomeadmin.adapters.ItemPedidoAdapter;
-import br.com.teste.xofome.xofomeadmin.constantes.Codes;
-import br.com.teste.xofome.xofomeadmin.constantes.Keys;
 import br.com.teste.xofome.xofomeadmin.model.ItemPedido;
 import br.com.teste.xofome.xofomeadmin.service.ItemPedidoService;
 
