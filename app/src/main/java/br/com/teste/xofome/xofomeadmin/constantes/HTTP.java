@@ -10,4 +10,5 @@ public interface HTTP {
     public static final String RETURN_LIST = URL+"/pedidos";
     public static final String FIND_ONE = URL+"/pedidos/";
     public static final String REQUEST_FIND_ITENS_BY_PEDIDO = URL + "/pedidos/itensp/";
+    public static final String REQUEST_UPDATE_STATUS = URL + "/pedidos/status/";
 }

@@ -32,6 +32,7 @@ public class RecuperaItensPedidoTask extends AsyncTask<Pedido, Void, Void> {
     private static final String TAG = "RecuperarItensTask";
     private Pedido pedido;
     private Integer status;
+
     public RecuperaItensPedidoTask(Context context, List<ItemPedido> itens){
         this.context = context;
         this.itens = itens;

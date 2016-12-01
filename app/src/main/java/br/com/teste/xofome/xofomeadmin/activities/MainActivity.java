@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                     Pedido p = pedidos.get(idx);
                     Toast.makeText(getApplicationContext(), "Pedido "
                             + p.getValorASerPago(), Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getApplicationContext(), DescricaoPedidoAcitivity.class);
+                Intent i = new Intent(getApplicationContext(), ModificaStatusActivity.class);
                 i.putExtra(Keys.REQUEST_DETALHES,p.getIdPedido());
                 startActivity(i);
             }
