@@ -42,18 +42,10 @@ public class DescricaoPedidoAcitivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarDesc);
         setSupportActionBar(toolbar);
 
-        //recebo o id de um pedido
-        //recupero ele e jogo pra um pedido em memoria
-        //Localizo os componentes e seto o valor de acordo com o do pedido recebido
-
         Intent intent = getIntent();
         int idPedido = (Integer) getIntent().getExtras().get(Keys.REQUEST_DETALHES);
         pedido = new Pedido();
         pedido.setIdPedido(idPedido);
-
-        //Chamo minha asynctask para recuperar o pedido.
-        //RecuperarPedidoTask recuperarPedidoTask = new RecuperarPedidoTask(getApplicationContext());
-        //recuperarPedidoTask.execute(pedido);
 
          new Thread(new Runnable() {
             @Override
@@ -72,10 +64,6 @@ public class DescricaoPedidoAcitivity extends AppCompatActivity {
         //Assino os valores aos campos
         valorRealPedido.setText(String.valueOf(pedido.getValorTotalPedido()));
         valorASerPagoRealPedido.setText(String.valueOf(pedido.getValorASerPago()));
-        if(pedido.getEndereco() == null)
-            pedido.setEndereco("Não informado");
-        descEndereco.setText(pedido.getEndereco());
-
         rv = (RecyclerView) findViewById(R.id.recyclerViewDescPedido);
         rv.setHasFixedSize(false);
 
@@ -86,7 +74,6 @@ public class DescricaoPedidoAcitivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
     }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -102,7 +89,6 @@ public class DescricaoPedidoAcitivity extends AppCompatActivity {
             }
         };
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

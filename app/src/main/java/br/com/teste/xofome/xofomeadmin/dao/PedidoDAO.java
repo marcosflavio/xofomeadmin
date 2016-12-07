@@ -22,7 +22,6 @@ public class PedidoDAO {
 
     private Context context;
     private String table_name = "pedido";
-    private String[] colunas  = new String[]{"idPedido","valorASerPago","status","endereco","valorTotalPedido"};
     private static final String TAG = "sql";
 
     public PedidoDAO (Context context){
@@ -48,7 +47,8 @@ public class PedidoDAO {
             values.put("email",user.getEmail());
             values.put("status", pedido.getStatus());
             values.put("valorTotalPedido", pedido.getValorTotalPedido());
-            values.put("endereco", pedido.getEndereco());
+            values.put("longitude", pedido.getLongitude());
+            values.put("latitude", pedido.getLatitude());
             values.put("valorASerPago", pedido.getValorASerPago());
 
             //insiro o pedido
@@ -73,7 +73,8 @@ public class PedidoDAO {
             values.put("status", pedido.getStatus());
             values.put("email",user.getEmail());
             values.put("valorTotalPedido", pedido.getValorTotalPedido());
-            values.put("endereco", pedido.getEndereco());
+            values.put("longitude", pedido.getLongitude());
+            values.put("latitude", pedido.getLatitude());
             values.put("valorASerPago", pedido.getValorASerPago());
             //Atualiza o pedido
             db.update(table_name,values,"idPedido = " + id, null);
@@ -168,7 +169,8 @@ public class PedidoDAO {
 //                pedido.setItensPedido(itens);
                 pedido.setValorTotalPedido(c.getDouble(c.getColumnIndex("valorTotalPedido")));
                 pedido.setStatus(c.getString(c.getColumnIndex("status")));
-                pedido.setEndereco(c.getString(c.getColumnIndex("endereco")));
+                pedido.setLongitude(c.getString(c.getColumnIndex("longitude")));
+                pedido.setLatitude(c.getString(c.getColumnIndex("latitude")));
                 pedido.setValorASerPago(c.getDouble(c.getColumnIndex("valorTotalASerPago")));
                 return pedido;
             }
@@ -201,7 +203,8 @@ public class PedidoDAO {
 //                pedido.setItensPedido(itens);
                 pedido.setValorTotalPedido(c.getDouble(c.getColumnIndex("valorTotalPedido")));
                 pedido.setStatus(c.getString(c.getColumnIndex("status")));
-                pedido.setEndereco(c.getString(c.getColumnIndex("endereco")));
+                pedido.setLongitude(c.getString(c.getColumnIndex("longitude")));
+                pedido.setLatitude(c.getString(c.getColumnIndex("latitude")));
                 pedido.setValorASerPago(c.getDouble(c.getColumnIndex("valorASerPago")));
 
             } while (c.moveToNext());
@@ -224,7 +227,8 @@ public class PedidoDAO {
             Usuario usuario = usuarioDAO.find();
             pedido.setValorTotalPedido(c.getDouble(c.getColumnIndex("valorTotalPedido")));
             pedido.setStatus(c.getString(c.getColumnIndex("status")));
-            pedido.setEndereco(c.getString(c.getColumnIndex("endereco")));
+            pedido.setLongitude(c.getString(c.getColumnIndex("longitude")));
+            pedido.setLatitude(c.getString(c.getColumnIndex("latitude")));
             pedido.setUsuario(usuario);
             pedido.setValorASerPago(c.getDouble(c.getColumnIndex("valorASerPago")));
 

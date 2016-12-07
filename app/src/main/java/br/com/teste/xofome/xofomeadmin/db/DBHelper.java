@@ -27,7 +27,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "quantidade int, valor double, foreign key(idPedido) references Pedido(idPedido)," +
             " foreign key(idProduto) references Produto(idProduto));";
 
-    private static final String CREATE_TABLE_PEDIDO = "create table if not exists pedido (idPedido integer primary key, status text, endereco text, valorTotalPedido double, valorASerPago double, email text, foreign key(email) references Usuario(email));";
+    private static final String CREATE_TABLE_PEDIDO = "create table if not exists pedido (idPedido integer primary key, status text, longitude text, latitude text, valorTotalPedido double, valorASerPago double, email text, foreign key(email) references Usuario(email));";
 
     private static final String CREATE_TABLE_USUARIO = "create table if not exists usuario (email text primary key);";
 

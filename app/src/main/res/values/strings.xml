@@ -41,5 +41,7 @@
     <string name="valor_total"> Valor total: </string>
     <string name="valor_pago"> Valor Pago: </string>
     <string name="produtos"> Produtos: </string>
+    <string name="btn_rota"> Rota </string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
