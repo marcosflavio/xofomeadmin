@@ -73,6 +73,17 @@ public class AddProdutoActivity extends AppCompatActivity {
             }
         });
 
+        if (savedInstanceState != null) {
+            bitmap = savedInstanceState.getParcelable("bitmap");
+            imageView.setImageBitmap(bitmap);
+        }
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("bitmap", bitmap);
     }
 
     @Override
