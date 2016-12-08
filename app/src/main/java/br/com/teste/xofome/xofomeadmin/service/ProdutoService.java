@@ -23,27 +23,27 @@ public class ProdutoService {
 
     public static List<Produto> getProdutos(Context context, int tipo) throws IOException {
         ProdutoDAO dao = new ProdutoDAO(context);
-            List<Produto> produtos = dao.findAllTipo(tipo);
-            return produtos;
+        List<Produto> produtos = dao.findAllTipo(tipo);
+        return produtos;
     }
 
     public static Produto getProduto(Context context, int id) throws IOException {
         ProdutoDAO dao = new ProdutoDAO(context);
-            Produto produto = dao.findById(id);
-            return produto;
+        Produto produto = dao.findById(id);
+        return produto;
     }
 
     public static void save(Context context, Produto produto) {
         ProdutoDAO dao = new ProdutoDAO(context);
-            dao.save(produto);
+        dao.save(produto);
     }
 
     public static void delete(Context context, Produto produto) {
         ProdutoDAO dao = new ProdutoDAO(context);
-            dao.delete(produto);
+        dao.delete(produto);
     }
 
-    public static Produto formarProduto(int tipo, float preco, String nome, String desc, byte [] imagem) {
+    public static Produto formarProduto(int tipo, float preco, String nome, String desc, String imagem) {
         Produto produto = new Produto();
         produto.setTipo(tipo);
         produto.setPreco(preco);

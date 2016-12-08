@@ -3,6 +3,7 @@ package br.com.teste.xofome.xofomeadmin.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -33,6 +34,8 @@ public class ProdutoDAO {
         SQLiteDatabase db = new DBHelper(context).getWritableDatabase();
         try {
             ContentValues values = new ContentValues();
+
+            values.put("id_produto", produto.getIdProduto());
             values.put("nome_produto", produto.getNomeProduto());
             values.put("descricao", produto.getDescricao());
             values.put("preco", produto.getPreco());
@@ -41,7 +44,7 @@ public class ProdutoDAO {
             //insiro o produto
             db.insert(table_name, "", values);
         } finally {
-            Log.d(TAG, "Produto " + produto.getImagem() + " adicionado ao banco!");
+            Log.d(TAG, "Produto" + produto.getNomeProduto() + " adicionado ao banco!");
             db.close();
         }
 
@@ -115,7 +118,8 @@ public class ProdutoDAO {
                 produto.setNomeProduto(c.getString(c.getColumnIndex("nome_produto")));
                 produto.setPreco(c.getFloat(c.getColumnIndex("preco")));
                 produto.setTipo(c.getInt(c.getColumnIndex("tipo")));
-                produto.setImagem(c.getBlob(c.getColumnIndex("imagem")));
+                //produto.setImagem(c.getBlob(c.getColumnIndex("imagem")));
+                produto.setImagem(c.getString(c.getColumnIndex("imagem")));
                 return produto;
             }
 
@@ -137,12 +141,17 @@ public class ProdutoDAO {
                 produto.setNomeProduto(c.getString(c.getColumnIndex("nome_produto")));
                 produto.setPreco(c.getFloat(c.getColumnIndex("preco")));
                 produto.setTipo(c.getInt(c.getColumnIndex("tipo")));
-                produto.setImagem(c.getBlob(c.getColumnIndex("imagem")));
-
+                //produto.setImagem(c.getBlob(c.getColumnIndex("imagem")));
+                produto.setImagem(c.getString(c.getColumnIndex("imagem")));
             } while (c.moveToNext());
         }
 
         return produtos;
+    }
+
+    public long getTaskCount() {
+        SQLiteDatabase db = new DBHelper(context).getWritableDatabase();
+        return DatabaseUtils.queryNumEntries(db,table_name);
     }
 
     private Produto toProduto(Cursor c) {
@@ -155,8 +164,8 @@ public class ProdutoDAO {
             produto.setNomeProduto(c.getString(c.getColumnIndex("nome_produto")));
             produto.setPreco(c.getFloat(c.getColumnIndex("preco")));
             produto.setTipo(c.getInt(c.getColumnIndex("tipo")));
-            produto.setImagem(c.getBlob(c.getColumnIndex("imagem")));
-
+            //produto.setImagem(c.getBlob(c.getColumnIndex("imagem")));
+            produto.setImagem(c.getString(c.getColumnIndex("imagem")));
             return produto;
         } else {
             Log.w("moveToFirst", "false");

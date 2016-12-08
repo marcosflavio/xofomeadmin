@@ -10,9 +10,10 @@ public class Produto {
     private Float preco;
     private String descricao;
     private int tipo;
-    private byte [] imagem;
+    //private byte [] imagem;
+    private String imagem;
 
-    public Produto(String nome, Float preco, String descricao, int tipo, byte [] imagem) {
+    public Produto(String nome, Float preco, String descricao, int tipo, String imagem) {
         this.nomeProduto = nome;
         this.preco = preco;
         this.descricao = descricao;
@@ -63,10 +64,10 @@ public class Produto {
         this.tipo = tipo;
     }
 
-    public byte[] getImagem() {
+    public String getImagem() {
         return imagem;
     }
-    public void setImagem(byte[] imagem) {
+    public void setImagem(String imagem) {
         this.imagem = imagem;
     }
 }

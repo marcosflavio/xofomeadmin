@@ -16,6 +16,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -47,6 +48,9 @@ public class AddProdutoActivity extends AppCompatActivity {
     private LinearLayout linearLayout;
     private ImageView imageView;
     private Bitmap bitmap;
+    private ByteArrayOutputStream byteArrayOutputStream ;
+    private  byte[] byteArray ;
+
 
     public static Bitmap rotateImage(Bitmap source, float angle) {
         Matrix matrix = new Matrix();
@@ -62,8 +66,22 @@ public class AddProdutoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         linearLayout = (LinearLayout) findViewById(R.id.activity_add_produto);
         imageView = (ImageView) findViewById(R.id.imageViewTeste);
-        ImageButton b = (ImageButton) findViewById(R.id.imageButton);
+        byteArrayOutputStream = new ByteArrayOutputStream();
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        comidas = (RadioButton) findViewById(R.id.radioButtonProdutoComida);
+        bebidas = (RadioButton) findViewById(R.id.radioButtonProdutoBebida);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
 
+                if(i == R.id.radioButtonProdutoComida){
+                    tipo = 0;
+                }else if(i == R.id.radioButtonProdutoBebida){
+                    tipo = 1;
+                }
+            }
+        });
+        ImageButton b = (ImageButton) findViewById(R.id.imageButton);
         b.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -130,33 +148,37 @@ public class AddProdutoActivity extends AppCompatActivity {
         }
     }
 
-    public void listenerOnRadioButton(){
-
-        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-        comidas = (RadioButton) findViewById(R.id.radioButtonProdutoComida);
-        bebidas = (RadioButton) findViewById(R.id.radioButtonProdutoBebida);
-
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                if(i == R.id.radioButtonProdutoComida){
-                    tipo = 0;
-                }else if(i == R.id.radioButtonProdutoBebida){
-                    tipo = 1;
-                }
-            }
-        });
-    }
+//    public void listenerOnRadioButton(){
+//
+//        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+//        comidas = (RadioButton) findViewById(R.id.radioButtonProdutoComida);
+//        bebidas = (RadioButton) findViewById(R.id.radioButtonProdutoBebida);
+//
+//        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+//
+//                if(i == R.id.radioButtonProdutoComida){
+//                    tipo = 0;
+//                }else if(i == R.id.radioButtonProdutoBebida){
+//                    tipo = 1;
+//                }
+//            }
+//        });
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        byte [] imagemFinal = null;
-
+        //byte [] imagemFinal = null;
+        String imagemFinal = null;
         if (id == R.id.confirmar_produto) {
             Produto produto = new Produto();
             EditText nomeProduto = (EditText) findViewById(R.id.editTextNomeProduto);
+
+
+            /** Teste upload**/
+
 
             EditText precoProduto = (EditText) findViewById(R.id.editTextPrecoProduto);
             EditText descProduto = (EditText) findViewById(R.id.editTextDescricaoProduto);
@@ -166,7 +188,13 @@ public class AddProdutoActivity extends AppCompatActivity {
             String desc = descProduto.getText().toString();
 
             if( bitmap != null){
-                 imagemFinal = ImageUtil.getBytes(bitmap);
+                 //imagemFinal = ImageUtil.encodeTobase64(bitmap);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
+
+                byteArray = byteArrayOutputStream.toByteArray();
+
+                imagemFinal = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
                 produto.setImagem(imagemFinal);
 
 
@@ -175,10 +203,6 @@ public class AddProdutoActivity extends AppCompatActivity {
             produto.setPreco(preco);
             produto.setDescricao(desc);
             produto.setNomeProduto(nome);
-//            Snackbar snackbar = Snackbar
-//                    .make(linearLayout, "Produto " + produto.getNomeProduto() +
-//                            " criado com sucesso!", Snackbar.LENGTH_LONG);
-//            snackbar.show();
 
             //starto um service para adicionar o produto no servidor com json
             AdicionaProdutoService service = new AdicionaProdutoService(getApplicationContext());

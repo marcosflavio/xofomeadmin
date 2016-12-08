@@ -18,9 +18,13 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
+//    private static final String CREATE_TABLE_PRODUTO = "create table if not exists produto " +
+//            "(id_produto integer primary key" +
+//            " , nome_produto text,descricao text,preco float, tipo integer, imagem BLOB);";
+
     private static final String CREATE_TABLE_PRODUTO = "create table if not exists produto " +
             "(id_produto integer primary key" +
-            " , nome_produto text,descricao text,preco float, tipo integer, imagem BLOB);";
+            " , nome_produto text,descricao text,preco float, tipo integer, imagem text);";
 
     private static final String CREATE_TABLE_ITEM_PEDIDO = "create table if not exists item_pedido(idItemPedido" +
             " integer primary key, idPedido integer, idProduto integer, nomeProduto text, " +
