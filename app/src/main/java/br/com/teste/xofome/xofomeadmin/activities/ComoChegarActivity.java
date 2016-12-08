@@ -57,7 +57,6 @@ public class ComoChegarActivity extends AppCompatActivity implements OnMapReadyC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         destino = (LatLng) getIntent().getExtras().get(Keys.REQUEST_ROTA);

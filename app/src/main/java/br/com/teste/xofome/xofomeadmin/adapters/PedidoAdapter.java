@@ -106,6 +106,8 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.MyViewHold
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(context, ComoChegarActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 Double latitude =   Double.valueOf(p.getLatitude());
                 Double longitude =  Double.valueOf(p.getLongitude());
 

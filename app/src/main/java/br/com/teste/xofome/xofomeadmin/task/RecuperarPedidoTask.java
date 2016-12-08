@@ -55,7 +55,7 @@ public class RecuperarPedidoTask {
             Gson gson = new Gson();
 
             pedido = gson.fromJson(response, Pedido.class);
-         //   return pedido;
+
 
         } catch (MalformedURLException ex) {
             Log.e(TAG, ex.getMessage());
