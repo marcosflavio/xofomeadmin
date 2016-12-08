@@ -37,10 +37,7 @@ public class ModificaStatusTask extends AsyncTask<Integer, Void, Void> {
         BufferedReader in = null;
 
         try {
-            //Log.w(TAG, "Entrei no returnPedido");
 
-           // Log.w(TAG, HTTP.REQUEST_FIND_PEDIDO_BY_USER_AND_STATUS +pedidoRetornado.getUsuario().getEmail()+"/"+
-                 //   pedidoRetornado.getStatus());
             URL url = new URL(HTTP.REQUEST_UPDATE_STATUS + idPedido + "/"+ status);
 
             urlConnection = (HttpURLConnection) url.openConnection();
@@ -57,20 +54,15 @@ public class ModificaStatusTask extends AsyncTask<Integer, Void, Void> {
             while ((inputLine = in.readLine()) != null)
                 response += inputLine;
 
-
-           // Log.e(TAG, "Resposta >>>>>> " + response);
-            //Gson gson = new Gson();
-
-         //   pedidoRetornado = gson.fromJson(response,Pedido.class);
-
-
         } catch (MalformedURLException ex) {
            // Log.e(TAG, ex.getMessage());
             //Log.e(TAG, ex.toString());
+            Log.e("modificastatus", "Url mal formada");
             ex.printStackTrace();
         } catch (IOException ex) {
-//            Log.e(TAG, ex.getMessage());
-//            Log.e(TAG, ex.toString());
+            Log.e("modificastatus", ex.getMessage());
+            Log.e("modificastatus", ex.toString());
+            Log.e("modificastatus", "Sem internet");
             ex.printStackTrace();
         } finally {
 
@@ -78,8 +70,9 @@ public class ModificaStatusTask extends AsyncTask<Integer, Void, Void> {
             try {
                 in.close();
             } catch (IOException ex) {
-//                Log.e(TAG, ex.getMessage());
-//                Log.e(TAG, ex.toString());
+                Log.e("modificastatus", "Erro na conexao");
+                Log.e("modificastatus", ex.getMessage());
+                Log.e("modificastatus", ex.toString());
                 ex.printStackTrace();
             }
 

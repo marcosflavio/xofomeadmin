@@ -6,21 +6,26 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import br.com.teste.xofome.xofomeadmin.R;
 import br.com.teste.xofome.xofomeadmin.constantes.Codes;
 import br.com.teste.xofome.xofomeadmin.constantes.Keys;
 import br.com.teste.xofome.xofomeadmin.task.ModificaStatusTask;
 
-public class ModificaStatusActivity extends AppCompatActivity {
+public class ModificaStatusActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private int idPedido;
     private String statusPedido;
     private TextView idModifica;
-    private EditText status;
+    //private EditText status;
+    private Spinner spinnerStatus;
+    private String statusString = "Iniciado";
+    private static final String[] status = {"Recebido", "Em espera", "Preparando","Pronto","Em entrega","Finalizado"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +37,43 @@ public class ModificaStatusActivity extends AppCompatActivity {
         idPedido = (Integer) getIntent().getExtras().get(Keys.REQUEST_DETALHES);
         idModifica = (TextView) findViewById(R.id.textViewIdPedidoModifica);
         idModifica.setText(String.valueOf(idPedido));
-        status = (EditText) findViewById(R.id.textViewStatusModifica);
+        //status = (EditText) findViewById(R.id.textViewStatusModifica);
+        spinnerStatus = (Spinner) findViewById(R.id.spinnerStatus);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(ModificaStatusActivity.this,
+                android.R.layout.simple_spinner_item,status);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerStatus.setAdapter(adapter);
+        spinnerStatus.setOnItemSelectedListener(this);
+
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        switch (i) {
+            case 0:
+                statusString = status[0];
+                break;
+            case 1:
+                statusString = status[1];
+                break;
+            case 2:
+                statusString = status[2];
+                break;
+            case 3:
+                statusString = status[3];
+                break;
+            case 4:
+                statusString = status[4];
+                break;
+            case 5:
+                statusString = status[5];
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {}
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -46,10 +85,9 @@ public class ModificaStatusActivity extends AppCompatActivity {
             return true;
         }else if (id == R.id.modifica_confirmar){
 
-            statusPedido = status.getText().toString();
             //starta um service pra modificar o stauts
 
-            ModificaStatusTask modificaStatusTask = new ModificaStatusTask(statusPedido);
+            ModificaStatusTask modificaStatusTask = new ModificaStatusTask(statusString);
             modificaStatusTask.execute(idPedido);
 
             Intent intent = new Intent(this, MainActivity.class);
