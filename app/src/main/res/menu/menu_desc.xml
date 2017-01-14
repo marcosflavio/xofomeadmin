@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="@string/desc_confirm"
+        android:id="@+id/desc_confirm"
+        app:showAsAction="always"
+        android:orderInCategory="100"
+        android:icon="@mipmap/ic_check_white_48dp"/>
+
+    <item
+        android:title="@string/desc_cancel"
+        android:id="@+id/desc_cancel"
+        app:showAsAction="always"
+        android:orderInCategory="100"
+        android:icon="@mipmap/ic_close_white_48dp"/>
+</menu>

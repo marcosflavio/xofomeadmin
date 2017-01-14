@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="Settings"
+        android:id="@+id/add_produto"
+        app:showAsAction="always"
+        android:orderInCategory="100"
+        android:icon="@mipmap/ic_add_white_48dp"/>
+
+        <!--android:icon="@mipmap/ic_more_vert_white_48dp" />-->
+
+</menu>

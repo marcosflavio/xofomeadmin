@@ -1,3 +1,47 @@
 <resources>
-    <string name="app_name">XoFomeAdmin</string>
+    <string name="app_name">Xo Fome Admin</string>
+    <string name="text_view_nome_produto">Nome:</string>
+    <string name="edit_view_nome_produto">Pastel</string>
+
+    <string name="text_view_preco_produto">Preço:</string>
+    <string name="edit_view_preco_produto">5.99</string>
+
+    <string name="text_view_descricao_produto">Descrição:</string>
+    <string name="edit_view_descricao_produto">bla bla bla</string>
+
+    <string name="text_view_tipo_produto"> Tipo</string>
+    <string name="radio_button_comida"> Comida </string>
+    <string name="radio_button_bebida"> Bebida </string>
+
+    <string name="pedidos_realizados"> Pedidos Recebidos </string>
+
+    <string name="pedido"> Pedido: </string>
+    <string name="pedido_id"> 1987 </string>
+    <string name="pedido_status"> Status: </string>
+    <string name="pedido_status_din"> Em preparo </string>
+
+    <string name="desc_confirm"> Confirmar </string>
+    <string name="desc_cancel"> Cancelar </string>
+
+    <string name="text_view_desc_title"> Itens do Pedido </string>
+
+    <string name="text_view_desc_valor_total"> Valor total: </string>
+    <string name="text_view_desc_valor_total_real"> 7.85 </string>
+    <string name="text_view_desc_valor_a_ser_pago"> Valor a ser pago: </string>
+    <string name="text_view_desc_valor_a_ser_pago_real"> 10.00 </string>
+    <string name="text_view_desc_status_do_pedido"> Status do Pedido: </string>
+    <string name="text_view_desc_status_real"> Em processamento </string>
+    <string name="text_view_desc_entrega"> Entrega: </string>
+    <string name="text_view_desc_endereco"> Rua vila velha </string>
+
+    <string name="text_view_produto_nome"> Pastel </string>
+    <string name="quantidadeItemPedido"> 5 </string>
+
+    <string name="endereco"> Endereço: </string>
+    <string name="valor_total"> Valor total: </string>
+    <string name="valor_pago"> Valor Pago: </string>
+    <string name="produtos"> Produtos: </string>
+    <string name="btn_rota"> Rota </string>
+    <string name="title_activity_maps">Map</string>
+
 </resources>

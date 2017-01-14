@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_produto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="br.com.teste.xofome.xofomeadmin.activities.AddProdutoActivity"
+    android:weightSum="1">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbarAdd" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="@string/text_view_nome_produto"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewNomeProduto"
+            android:layout_width="85dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editTextNomeProduto" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="@string/text_view_preco_produto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewPrecoProduto"
+            android:layout_weight="0.45"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editTextPrecoProduto"
+            android:layout_weight="1"
+            android:textColor="?attr/colorPrimary" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="265dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="@string/text_view_tipo_produto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewTipoProduto"
+            android:layout_weight="0.04" />
+
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButtonProdutoComida"
+                android:text="@string/radio_button_comida"
+                android:layout_gravity="center"/>
+
+            <RadioButton
+                android:text="@string/radio_button_bebida"
+                android:layout_width="114dp"
+                android:layout_height="match_parent"
+                android:id="@+id/radioButtonProdutoBebida"
+                android:layout_gravity="center"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <TextView
+        android:text="@string/text_view_descricao_produto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewDescricaoProduto"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editTextDescricaoProduto"
+        android:layout_weight="0.14" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_camera_enhance_black_48dp"
+        android:id="@+id/imageButton"
+        android:background="@null"
+        android:elevation="20dp"
+        android:layout_gravity="center"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageViewTeste"
+        android:layout_weight="0.53"
+        android:adjustViewBounds="true"/>
+
+
+</LinearLayout>
